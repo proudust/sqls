@@ -1,3 +1,5 @@
+//go:build !wasm
+
 package database
 
 import (
@@ -106,7 +108,7 @@ func (db *OracleDBRepository) SchemaTables(ctx context.Context) (map[string][]st
 		ctx,
 		`
 	SELECT OWNER, TABLE_NAME
-      FROM SYS.ALL_TABLES 
+      FROM SYS.ALL_TABLES
   ORDER BY OWNER, TABLE_NAME
 		`)
 	if err != nil {

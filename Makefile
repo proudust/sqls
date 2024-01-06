@@ -1,4 +1,4 @@
-BIN := sqls
+BIN := sqls.wasi.wasm
 ifeq ($(OS),Windows_NT)
 BIN := $(BIN).exe
 endif
@@ -14,7 +14,7 @@ all: clean build
 
 .PHONY: build
 build:
-	go build -ldflags=$(BUILD_LDFLAGS) -o $(BIN) .
+	GOOS=wasip1 GOARCH=wasm go build -ldflags=$(BUILD_LDFLAGS) -o $(BIN) .
 
 .PHONY: release
 release:
